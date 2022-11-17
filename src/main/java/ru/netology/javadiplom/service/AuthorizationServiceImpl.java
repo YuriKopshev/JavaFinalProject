@@ -18,6 +18,7 @@ import ru.netology.javadiplom.security.JwtProvider;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Service
 public class AuthorizationServiceImpl implements AuthorizationService {
@@ -33,11 +34,11 @@ public class AuthorizationServiceImpl implements AuthorizationService {
 
     @Override
     public Map<String, String> login(User user) {
-        Map<String, String> resultMap = new HashMap<>();
+        Map<String, String> resultMap = new ConcurrentHashMap<>();
         if (user == null || user.getLogin().isEmpty() || user.getPassword().isEmpty()) {
             throw new UnauthorizedException("Invalid credentials");
         }
-        User userData = storageRepository.login(user.getLogin());
+        User userData = storageRepository.login(user.getLogin(),user.getPassword());
         if (userData == null) {
             throw new UnauthorizedException("Invalid credentials");
         }

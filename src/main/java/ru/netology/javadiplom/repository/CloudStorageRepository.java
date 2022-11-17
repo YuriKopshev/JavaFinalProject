@@ -9,16 +9,16 @@ import java.util.List;
 
 public interface CloudStorageRepository {
 
-    User login(String login);
+    User login(String login, String password);
 
-    void loadFile(MultipartFile file, String dataBaseName);
+    void loadFile(MultipartFile file, User user);
 
-    void deleteFile(String fileName, String dataBaseName);
+    void deleteFile(String fileName, User user);
 
-    Resource getFile(String fileName, String dataBaseName);
+    Resource getFile(String fileName, User user);
 
-    void editFile(String oldFileName, String newFileName, String dataBaseName);
+    void editFile(String oldFileName, String newFileName, User user);
 
-    List<FileData> getListOfFile(Integer limit, String dataBaseName);
+    List<FileData> getListOfFile(Integer limit, User user);
 }
 

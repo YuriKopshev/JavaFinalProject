@@ -44,7 +44,7 @@ public class CloudStorageServiceImpl implements CloudStorageService {
         if (file == null || file.isEmpty()) {
             throw new InputException("Error input data");
         }
-        storageRepository.loadFile(file, findByLogin(getLoginFromUserDetails()).getData_base_name());
+        storageRepository.loadFile(file, findByLogin(getLoginFromUserDetails()));
     }
 
     @Override
@@ -52,7 +52,7 @@ public class CloudStorageServiceImpl implements CloudStorageService {
         if (fileName == null || fileName.isEmpty()) {
             throw new InputException("Error input data");
         }
-        storageRepository.deleteFile(fileName, findByLogin(getLoginFromUserDetails()).getData_base_name());
+        storageRepository.deleteFile(fileName, findByLogin(getLoginFromUserDetails()));
 
     }
 
@@ -61,7 +61,7 @@ public class CloudStorageServiceImpl implements CloudStorageService {
         if (fileName == null || fileName.isEmpty()) {
             throw new InputException("Error input data");
         }
-        return storageRepository.getFile(fileName, findByLogin(getLoginFromUserDetails()).getData_base_name());
+        return storageRepository.getFile(fileName, findByLogin(getLoginFromUserDetails()));
 
     }
 
@@ -70,7 +70,7 @@ public class CloudStorageServiceImpl implements CloudStorageService {
         if (oldFileName == null || newFileName == null || oldFileName.isEmpty() || newFileName.isEmpty()) {
             throw new InputException("Error input data");
         }
-        storageRepository.editFile(oldFileName, newFileName, findByLogin(getLoginFromUserDetails()).getData_base_name());
+        storageRepository.editFile(oldFileName, newFileName, findByLogin(getLoginFromUserDetails()));
 
     }
 
@@ -79,6 +79,6 @@ public class CloudStorageServiceImpl implements CloudStorageService {
         if (limit <= 0 || limit > 30) {
             throw new InputException("Error input data");
         }
-        return storageRepository.getListOfFile(limit, findByLogin(getLoginFromUserDetails()).getData_base_name());
+        return storageRepository.getListOfFile(limit, findByLogin(getLoginFromUserDetails()));
     }
 }

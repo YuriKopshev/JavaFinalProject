@@ -2,18 +2,19 @@ package ru.netology.javadiplom.model;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Set;
 
 @Getter
 @Setter
-@ToString
 @NoArgsConstructor
 @Entity
-public class User {
+@Table(name = "user")
+public class User implements Serializable {
 
     @Id
-    private long id;
+    private Long id;
 
     private String login;
 
@@ -21,12 +22,13 @@ public class User {
 
     private String name;
 
-    private String data_base_name;
 
-    public User(String login, String password, String name, String data_base_name) {
+   @OneToMany
+   private Set<FileEntity> fileEntity;
+
+    public User(String login, String password, String name) {
         this.login = login;
         this.password = password;
         this.name = name;
-        this.data_base_name = data_base_name;
     }
 }
